@@ -245,11 +245,11 @@ def illu_drones(draw, x, y, w, h):
 
 def illu_gaza(draw, x, y, w, h):
     draw.rectangle([x, y, x + w, y + h], fill=(240, 234, 214))
-    # warning triangle
+    # warning triangle (sized to stay inside the illustration box)
     cx, cy = x + w * 0.5, y + h * 0.42
-    draw.polygon([(cx, cy - 30), (cx - 30, cy + 22), (cx + 30, cy + 22)],
+    draw.polygon([(cx, cy - 17), (cx - 26, cy + 20), (cx + 26, cy + 20)],
                  fill=(240, 190, 40), outline=INK)
-    draw.text((cx - 4, cy - 14), "!", font=font("DejaVuSans-Bold.ttf", 22),
+    draw.text((cx - 4, cy - 12), "!", font=font("DejaVuSans-Bold.ttf", 20),
               fill=INK)
     # olive branch
     draw.line([(x + w * 0.15, y + h * 0.88), (x + w * 0.85, y + h * 0.78)],
@@ -267,9 +267,9 @@ def illu_cyclone(draw, x, y, w, h):
                   (x + w * 0.55, y + h * 0.30), (x + w * 0.45, y + h * 0.75),
                   (x + w * 0.15, y + h * 0.95), (x, y + h * 0.70)],
                  fill=LAND)
-    # spiral
-    cx, cy = x + w * 0.68, y + h * 0.45
-    for r, a0, a1 in ((8, 0, 300), (16, 40, 340), (24, 80, 20), (32, 120, 60)):
+    # spiral (radii kept small so it stays inside the illustration box)
+    cx, cy = x + w * 0.68, y + h * 0.50
+    for r, a0, a1 in ((6, 0, 300), (11, 40, 340), (16, 80, 20), (21, 120, 60)):
         draw.arc([cx - r, cy - r, cx + r, cy + r], a0, a1, fill=TEAL, width=3)
     draw.ellipse([cx - 4, cy - 4, cx + 4, cy + 4], fill=TEAL)
     draw.text((x + 4, y + h - 13), "BAY OF BENGAL", font=F_TINY, fill=INK)
@@ -277,11 +277,11 @@ def illu_cyclone(draw, x, y, w, h):
 
 def illu_uk(draw, x, y, w, h):
     draw.rectangle([x, y, x + w, y + h], fill=(238, 238, 232))
-    # fuel pump
-    px, py = x + w * 0.16, y + h * 0.30
-    draw.rectangle([px, py, px + 34, py + 52], fill=(40, 60, 90))
-    draw.rectangle([px + 8, py + 10, px + 26, py + 26], fill=(200, 225, 240))
-    draw.text((px + 2, py + 32), "£", font=font("DejaVuSans-Bold.ttf", 16),
+    # fuel pump (kept small so it stays inside the 46px illustration box)
+    px, py = x + w * 0.14, y + h * 0.18
+    draw.rectangle([px, py, px + 26, py + 30], fill=(40, 60, 90))
+    draw.rectangle([px + 5, py + 5, px + 21, py + 13], fill=(200, 225, 240))
+    draw.text((px + 7, py + 15), "£", font=font("DejaVuSans-Bold.ttf", 12),
               fill=(255, 255, 255))
     # rising arrow chart
     pts = [(x + w * 0.55, y + h * 0.78), (x + w * 0.65, y + h * 0.62),
@@ -299,10 +299,10 @@ def illu_sudan(draw, x, y, w, h):
         return (x + w * (lo + 20) / 75.0, y + h * (35 - la) / 75.0)
     pts = [proj(lo, la) for lo, la in AFRICA]
     draw.polygon(pts, fill=LAND, outline=(150, 140, 110))
-    # magnifier over Sudan
+    # magnifier over Sudan (kept small so it stays inside the illustration box)
     mx, my = proj(30, 13)
-    draw.ellipse([mx - 20, my - 20, mx + 20, my + 20], outline=RED, width=3)
-    draw.line([(mx + 14, my + 14), (mx + 30, my + 30)], fill=RED, width=4)
+    draw.ellipse([mx - 12, my - 12, mx + 12, my + 12], outline=RED, width=3)
+    draw.line([(mx + 8, my + 8), (mx + 19, my + 19)], fill=RED, width=4)
     draw.text((x + 4, y + 2), "EL OBEID", font=F_TINY, fill=INK)
 
 
@@ -343,33 +343,33 @@ def illu_antibiotic(draw, x, y, w, h):
 
 def illu_cop(draw, x, y, w, h):
     draw.rectangle([x, y, x + w, y + h], fill=(224, 238, 230))
-    # globe
-    cx, cy = x + w * 0.38, y + h * 0.48
-    draw.ellipse([cx - 30, cy - 30, cx + 30, cy + 30], fill=(140, 190, 220),
+    # globe (sized to stay inside the 46px illustration box)
+    cx, cy = x + w * 0.38, y + h * 0.50
+    draw.ellipse([cx - 20, cy - 20, cx + 20, cy + 20], fill=(140, 190, 220),
                  outline=BLUE, width=2)
-    draw.arc([cx - 30, cy - 30, cx + 30, cy + 30], 90, 270, fill=BLUE, width=2)
-    draw.ellipse([cx - 12, cy - 30, cx + 12, cy + 30], outline=BLUE, width=1)
-    draw.line([(cx - 30, cy), (cx + 30, cy)], fill=BLUE, width=1)
-    draw.ellipse([cx - 16, cy - 12, cx + 2, cy + 4], fill=(90, 160, 90))
-    draw.ellipse([cx + 4, cy + 8, cx + 18, cy + 22], fill=(90, 160, 90))
-    # thermometer
+    draw.arc([cx - 20, cy - 20, cx + 20, cy + 20], 90, 270, fill=BLUE, width=2)
+    draw.ellipse([cx - 8, cy - 20, cx + 8, cy + 20], outline=BLUE, width=1)
+    draw.line([(cx - 20, cy), (cx + 20, cy)], fill=BLUE, width=1)
+    draw.ellipse([cx - 11, cy - 8, cx + 1, cy + 3], fill=(90, 160, 90))
+    draw.ellipse([cx + 3, cy + 5, cx + 13, cy + 15], fill=(90, 160, 90))
+    # thermometer (shortened so the bulb stays clear of the tag line)
     tx = x + w * 0.80
-    draw.rounded_rectangle([tx - 6, cy - 28, tx + 6, cy + 22], radius=6,
+    draw.rounded_rectangle([tx - 5, cy - 20, tx + 5, cy + 12], radius=5,
                            fill=(255, 255, 255), outline=INK)
-    draw.ellipse([tx - 11, cy + 14, tx + 11, cy + 36], fill=RED)
-    draw.rectangle([tx - 3, cy - 20, tx + 3, cy + 22], fill=RED)
+    draw.ellipse([tx - 8, cy + 6, tx + 8, cy + 22], fill=RED)
+    draw.rectangle([tx - 2, cy - 14, tx + 2, cy + 12], fill=RED)
     draw.text((x + 4, y + h - 13), "35x35 GOAL", font=F_TINY, fill=INK)
 
 
 def illu_bangladesh(draw, x, y, w, h):
     draw.rectangle([x, y, x + w, y + h], fill=(238, 230, 214))
-    # factory
-    fx, fy = x + w * 0.10, y + h * 0.55
-    draw.rectangle([fx, fy, fx + 74, fy + 34], fill=(150, 90, 60))
-    draw.rectangle([fx + 6, fy - 22, fx + 14, fy], fill=(120, 70, 50))
-    draw.rectangle([fx + 22, fy - 30, fx + 30, fy], fill=(120, 70, 50))
+    # factory (kept short so it stays inside the illustration box, clear of the tag)
+    fx, fy = x + w * 0.10, y + h * 0.42
+    draw.rectangle([fx, fy, fx + 74, fy + 24], fill=(150, 90, 60))
+    draw.rectangle([fx + 6, fy - 12, fx + 14, fy], fill=(120, 70, 50))
+    draw.rectangle([fx + 22, fy - 18, fx + 30, fy], fill=(120, 70, 50))
     for wx in (fx + 8, fx + 28, fx + 48):
-        draw.rectangle([wx, fy + 8, wx + 12, fy + 20], fill=(255, 230, 140))
+        draw.rectangle([wx, fy + 6, wx + 12, fy + 16], fill=(255, 230, 140))
     # protest sign
     sx = x + w * 0.72
     draw.line([(sx, y + h * 0.44), (sx, y + h * 0.92)], fill=INK, width=3)
